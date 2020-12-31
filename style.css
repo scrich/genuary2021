@@ -1,6 +1,13 @@
 html, body {
-  margin: 0;
-  padding: 0;
+  margin: 10;
+  padding: 10;
+  background-color: lightgrey;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+a:hover {
+  text-decoration: none;
+  background-color: #eeeeee;
 }
 
 canvas {
