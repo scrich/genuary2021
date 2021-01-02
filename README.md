@@ -6,3 +6,4 @@ Generative art based on https://genuary2021.github.io/
 My sketches at https://scrich.co.uk/genuary2021/
 
 [0101 // THREE NESTED LOOPS](./20210101/20210101.md)
+[0102 Rule 30] (./20210102/20210102.md)
