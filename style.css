@@ -10,6 +10,10 @@ a:hover {
   background-color: #eeeeee;
 }
 
+dt {
+  padding-top: 20px;
+}
+
 canvas {
   display: block;
 }
