@@ -9,4 +9,4 @@ My sketches at https://scrich.co.uk/genuary2021/
 
 [0102 Rule 30](./20210102/20210102.md)
 
-[0104 Small areas of symmetry](./20210102/20210104.md)
+[0104 Small areas of symmetry](./20210104/20210104.md)
