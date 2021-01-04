@@ -97,12 +97,12 @@ function Particle() {
         
         // console.log("calcangle " + calcangle);
         let r = sqrt(x*x+y*y)
-        console.log("r " + r);
+        // console.log("r " + r);
 
         // console.log(angle,r);
         let segi = floor((calcangle/TAU) * segs);
         let layi = floor(r/scl);
-        console.log(layi);
+        // console.log(layi);
         var force = vectors[segi][layi];
         this.applyForce(force);
     }

@@ -11,10 +11,12 @@ let zoff;
 
 let flowfield_sq;
 let colors;
+let c;
 
 
 function setup() {
-    createCanvas(400, 400);
+    let can = createCanvas(400, 400);
+    can.parent("canvas");
     background("#d3d3d3");
     angleMode(RADIANS);
     cols = floor(width / scl);
@@ -30,15 +32,19 @@ function setup() {
         particles[i] = new Particle();
     }
 
-    // colors = {"white":color(255,250,250), "iris":color(53,164,212), "muscles":color(0,0,127,30), "black":color(25,25,25)};
-    // colors = {"white":color(255,250,250), "iris":color(117, 95, 14), "muscles":color(204, 170, 47,30), "black":color(25,25,25)};
-    // colors = {"white":color(255,250,250), "iris":color(15, 135, 131), "muscles":color(11, 54, 52,30), "black":color(25,25,25)};
-    colors = {"white":color(255,250,250), "iris":color(77, 41, 7), "muscles":color(153, 84, 18,30), "black":color(25,25,25)};
+    colors = [
+        {"white":color(255,250,250), "iris":color(53,164,212), "muscles":color(0,0,127,30), "black":color(25,25,25)},
+        {"white":color(255,250,250), "iris":color(117, 95, 14), "muscles":color(204, 170, 47,30), "black":color(25,25,25)},
+        {"white":color(255,250,250), "iris":color(15, 135, 131), "muscles":color(11, 54, 52,30), "black":color(25,25,25)},
+        {"white":color(255,250,250), "iris":color(77, 41, 7), "muscles":color(153, 84, 18,30), "black":color(25,25,25)}
+    ];
+
+    c = floor(random(4));
 
     noStroke();
-    fill(colors.white);
+    fill(colors[c].white);
     circle(width/2, height/2, layers*scl*2.5);
-    fill(colors.iris);
+    fill(colors[c].iris);
     circle(width/2, height/2, layers*scl*2+1);
 }
 
@@ -87,16 +93,16 @@ function draw() {
         // console.log("particle "+i);
         particles[i].follow(flowfield);
         particles[i].update();
-        particles[i].show(colors.muscles);
+        particles[i].show(colors[c].muscles);
         particles[i].edges();
     }
 
-    fr.html(floor(frameRate()));
+    // fr.html(floor(frameRate()));
 
 
-    fill(colors.black);
+    fill(colors[c].black);
     circle(width/2, height/2, layers*scl*0.5);
-    fill(colors.white);
+    fill(colors[c].white);
     circle(width/2+4*scl, height/2-4*scl, 20);
 
 // noLoop()
