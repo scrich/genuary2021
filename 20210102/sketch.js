@@ -32,7 +32,7 @@ function draw() {
   translate(width / 2, height / 3);
   
   // render the current grid
-  for (let i=0; i<layers; i++) {
+  for (let i=0; i < layers; i++) {
     let r = 5+i*i/10; //radius
     for (let j = 0; j < elements; j++) {
       let t = (j / elements) * TAU
