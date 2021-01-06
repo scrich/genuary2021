@@ -17,3 +17,8 @@ dt {
 canvas {
   display: block;
 }
+
+pre {
+  background: ivory;
+  padding:10px
+}

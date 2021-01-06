@@ -1,43 +1,18 @@
-const DEBUG = false;
-let s=[];
-
-/**
- * colors - https://paletton.com/#uid=75A1f0kllll01sMaHp3vZhC+YdT
- * 
- * A6373F
- * AA8E39
- * 343477
- * 3C8D2F
- * 
- */
-
-function setup() {
-  let can = createCanvas(400, 400);
-  can.parent("canvas");
-  strokeJoin(ROUND);
-  s.push(new Sas(50,50,100,"#A6373F"));
-  s.push(new Sas(250,50,100, "#AA8E39"));
-  s.push(new Sas(50,250,100, "#343477"));
-  s.push(new Sas(250,250,100, "#3C8D2F"));
-  
-}
-
-function draw() {
-  background(220);  
-  for (const sas of s) {
-    sas.render();
-  }
-}
-
 class Sas {
   constructor(x,y, size, col) {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.p = random(size*0.2, size*0.8);
+    this.pNoise = new NoiseLoop(random(80,100),size*0.1, size*0.9);
+    this.p = this.pNoise.value(0);
     this.col1 = color(col);
     this.col2 = color(compCol(col));
     this.rotate = floor(random(2));
+  }
+
+
+  update(t) {
+      this.p = this.pNoise.value(t);
   }
 
   render() {
@@ -48,7 +23,7 @@ class Sas {
       {x:0, y:this.size}
     ];
     curveTightness(0)
-    strokeWeight(4);
+    strokeWeight(this.size/25);
     // strokeJoin(ROUND);
     push();
     translate(this.x,this.y);
@@ -67,7 +42,7 @@ class Sas {
 
       fill(255);
       stroke(0);
-      strokeWeight(4);
+      strokeWeight(this.size/25);
 
       line(this.p/2,0,this.p/2,this.size/4);
       circle(this.p/2,0,this.size/10);
@@ -79,7 +54,7 @@ class Sas {
         // circle(point.x, point.y, this.size/10);
       }
            
-      strokeWeight(4);
+      strokeWeight(this.size/25);
       //line(this.p,0,this.size-this.p,this.size);
       push();
       translate(this.size, this.size);
@@ -93,7 +68,7 @@ class Sas {
 
       fill(255);
       stroke(0);
-      strokeWeight(4);
+      strokeWeight(this.size/25);
 
       line(this.p/2,0,this.p/2,this.size/3);
       circle(this.p/2,0,this.size/10);
