@@ -85,6 +85,6 @@ function draw() {
 
 function drawGrid() {
   for (let i = -width; i < width; i += gap) {
-    line(i, -height, i, height);
+    curve(0,-height,i, -height/2, i, height/2, width, height);
   }
 }
