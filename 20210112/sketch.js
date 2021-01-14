@@ -17,7 +17,7 @@ let p2s;
 
 function preload() {
 
-  boxsize = 0.2;
+  boxsize = 0.6;
   // pos = { lat: 50.7588, long: -1.2623 }; //IOW
   
   pos = { lat: 50.8520, long: -0.1403 }; // home
