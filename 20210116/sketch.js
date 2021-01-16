@@ -48,6 +48,18 @@ f++
 }
 
 class myCircle {
+
+  /**
+   * 
+   * locus of a point orbiting the origin
+   * so has an origin, radius, speed
+   * 
+   * then also has a circle centred on that point, with its own 
+   * radial velocity
+   * r
+   * 
+   */
+
   constructor(x,y,r,angle,speed) {
     this.x = x;
     this.y = y;
