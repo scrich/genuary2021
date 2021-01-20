@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>p5.js recording with CCapture example</title>
+  </head>
+  <body>
+    <h1>p5.js recording with CCapture example</h1>
+    <p>This page demonstrates how to record a <a href="https://p5js.org/">p5.js</a> animation using <a href="https://github.com/spite/ccapture.js">ccapture</a>.</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+    <script src="https://unpkg.com/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
+    <script src="noiseloop.js"></script>
+  <script src="class_sas.js"></script>
+<script>
+// the frame rate
+var fps = 60;
+
+// the canvas capturer instance
+var capturer = new CCapture({ format: 'gif', workersPath: 'js/', framerate: fps });
+
+// sketch variables
+const DEBUG = false;
+let start = 0;
+
+// setup the drawing
+function setup() {
+  can = createCanvas(400, 400);
+  
+  // this is optional, but lets us see how the animation will look in browser.
+  // this is optional, but lets us see how the animation will look in browser.
+  frameRate(fps);
+
+  // start the recording
+  capturer.start();
+}
+
+// draw
+var startMillis; // needed to subtract initial millis before first draw to begin at t=0.
+function draw() {
+  if (startMillis == null) {
+    startMillis = millis();
+  }
+
+  // duration in milliseconds
+  var duration = 6000;
+
+  // compute how far we are through the animation as a value between 0 and 1.
+  var elapsed = millis() - startMillis;
+  var t = map(elapsed, 0, duration, 0, 1);
+
+  // if we have passed t=1 then end the animation.
+  if (t > 1) {
+    noLoop();
+    console.log('finished recording.');
+    capturer.stop();
+    capturer.save();
+    return;
+  }
+
+  // actually draw
+  rate = 0.01;
+  background(51);
+
+  for (let i = 100; i < height; i+=20) {
+    let power =8*(height-i)/350;
+    mountain(i,100,power, map(i,0,height,0,255));
+  }
+  start += rate*4;
+  // end drawing code
+
+  // handle saving the frame
+  console.log('capturing frame');
+  capturer.capture(document.getElementById('defaultCanvas0'));
+//   capturer.capture(can);
+  
+}
+
+function mountain(y0, amp, speed, col) {
+
+fill(col);
+noStroke();
+beginShape();
+let xoff = start;
+for (let x = 0; x < width + 1; x++) {
+  let y = y0 +-amp + amp*noise(xoff,y0);
+  vertex(x, y);
+  xoff += rate*speed;
+}
+vertex(width, height);
+vertex(0, height);
+endShape();
+}
+
+
+
+    </script>
+  </body>
+</html>

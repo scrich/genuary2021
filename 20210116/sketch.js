@@ -2,7 +2,7 @@ const DEBUG = false;
 
 const scl = 60;
 let noCircles;
-let circles = [];
+let primary = [];
 let f; // frames
 
 
@@ -16,7 +16,7 @@ function setup() {
 
   for (let i = scl; i < width; i+=scl) {
     let plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-    circles.push(new myCircle(0,0,i/2,0,random(0.01,0.03)*plusOrMinus))
+    primary.push(new myCircle(0,0,i/2,0,random(0.01,0.03)*plusOrMinus))
   }
   
   stroke(color("lightgray"));
@@ -37,7 +37,7 @@ function draw() {
 translate(width/2, height/2);
 noFill();
 
-for (const c of circles) {
+for (const c of primary) {
   c.render();
   c.update();
 }
@@ -66,7 +66,10 @@ class myCircle {
     this.r = r;
     this.t = angle;
     this.speed = speed;
-    this.pos = createVector(this.x+this.r*cos(this.t), this.y+this.r*sin(this.t));
+    this.pos = createVector(
+      this.origin.x+this.r*cos(this.t), 
+      this.origin.y+this.r*sin(this.t)
+      );
     this.pos.setMag(r);
     // this.c = new myCircle(
     //   this.x+this.r*cos(this.t), this.y+this.r*sin(this.t))
