@@ -29,7 +29,7 @@ function setup() {
   
   strokeJoin(ROUND);
   curveTightness(0);
-  xi = 400;
+  xi = 100;
   yi = 800;
   t = 0;
   // colors = ["#A6373F", "#AA8E39", "#343477", "#3C8D2F", "#59c8c0", "#5571c6", "#cbcb88", "#c372d0"]
@@ -67,15 +67,15 @@ function draw() {
   }
 
   // actually draw
-  background(0);
-  for (let j = 1; j < 4; j++) {
+  background(255);
+  for (let j = 1; j < 5; j++) {
     
 
     for (let i = 0; i < 3; i++) {
       vertices[i] = pickapoint(xi * i * j, yi * i * j, t);
 
     }
-    tri(vertices, colors[j % colors.length]);
+    tri(vertices, colors[j % colors.length],colors[(colors.length-j) % colors.length]);
   }
 
 
@@ -90,12 +90,13 @@ function draw() {
 }
 
 
-function tri(v, col) {
+function tri(v, col,col2) {
   // triangle too small - return
   if (pow(v[1].x - v[0].x, 2) + pow(v[1].x - v[2].x, 2) < 300 || pow(v[1].y - v[0].y, 2) + pow(v[1].y - v[2].y, 2) < 100) return;
 
   fill(color(col));
   stroke(0);
+  noStroke();
   beginShape()
   for (const corner of v) {
     vertex(corner.x, corner.y);
@@ -122,10 +123,11 @@ function tri(v, col) {
     { x: (v[2].x + v[0].x) / 2, y: (v[2].y + v[0].y) / 2 }
   ];
   // recursively call this function
-  tri(midpoints, compCol(col));
-  tri(tri0,col);
-  tri(tri1, col);
-  tri(tri2, col);
+//   tri(midpoints, compCol(col));
+  tri(midpoints,col2,col);
+  tri(tri0,col,col2);
+  tri(tri1, col, col2);
+  tri(tri2, col, col2);
 }
 
 function pickapoint(xi, yi, t) {

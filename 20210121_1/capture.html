@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>p5.js recording with CCapture example</title>
+  </head>
+  <body>
+    <h1>p5.js recording with CCapture example</h1>
+    <p>This page demonstrates how to record a <a href="https://p5js.org/">p5.js</a> animation using <a href="https://github.com/spite/ccapture.js">ccapture</a>.</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script> -->
+    <!-- <script src="../libraries/p5.min.js"></script> -->
+    <script src="https://unpkg.com/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
+    <script src="noiseloop.js"></script>
+  <script src="class_sas.js"></script>
+<script>
+// the frame rate
+var fps = 60;
+
+// the canvas capturer instance
+var capturer = new CCapture({ format: 'gif', workersPath: 'js/', framerate: fps });
+
+// sketch variables
+const DEBUG = false;
+let s = [];
+let t = 0;
+let sketch_scale;
+let colors = [];
+
+// setup the drawing
+function setup() {
+  can = createCanvas(400, 400);
+  
+  strokeJoin(ROUND);
+  sketch_scale = 80;
+  colors = ["#A6373F", "#AA8E39", "#343477", "#3C8D2F", "#59c8c0", "#5571c6", "#cbcb88", "#c372d0"];
+
+ //////
+ make_sas(width);
+  
+  // this is optional, but lets us see how the animation will look in browser.
+  // this is optional, but lets us see how the animation will look in browser.
+  frameRate(fps);
+
+  // start the recording
+  capturer.start();
+}
+
+// draw
+var startMillis; // needed to subtract initial millis before first draw to begin at t=0.
+function draw() {
+  if (startMillis == null) {
+    startMillis = millis();
+  }
+
+  // duration in milliseconds
+  var duration = 6000;
+
+  // compute how far we are through the animation as a value between 0 and 1.
+  var elapsed = millis() - startMillis;
+  var t = map(elapsed, 0, duration, 0, 1);
+
+  // if we have passed t=1 then end the animation.
+  if (t > 1) {
+    noLoop();
+    console.log('finished recording.');
+    capturer.stop();
+    capturer.save();
+    return;
+  }
+
+  // actually draw
+  background(220);
+
+for (const sas of s) {
+  sas.update(t);
+  sas.render();
+  // if (frameCount % 400 == 200) {
+  //   sas.state = "UNSPLITTING";
+  // }
+  // if (frameCount % 400 == 0) {
+  //   sas.state = "SPLITTING";
+  // }
+}
+
+
+
+t+=0.0001;
+  // end drawing code
+
+  // handle saving the frame
+  console.log('capturing frame');
+  capturer.capture(document.getElementById('defaultCanvas0'));
+//   capturer.capture(can);
+  
+}
+
+function make_sas(size) {
+  if (size < 30) {
+    return;
+  }
+  s.push(new Sas((width-size)/2, (height - size)/2, size, colors[floor(random(colors.length))]));
+  
+  make_sas(3*size/4);
+  make_sas(2*size/4);
+  make_sas(1*size/4);
+}
+
+class Popper {
+  constructor() {
+    this.x = random(width);
+    this.y = random(height);
+    this.age = 0;
+    this.size = 0;
+  }
+
+  update() {
+    this.age+=2;
+    this.size+=2;
+  }
+
+  isDead() {
+    if (this.size > 200) {
+      return true;
+  } else {
+    return false;
+  }
+}
+
+  show() {
+    noStroke();
+    if (this.size > 196) {
+      stroke(color("red"));
+      strokeWeight(200-this.size);
+    } 
+    fill(255-this.size);
+    ellipse(this.x, this.y, this.size/2);
+  }
+}
+
+    </script>
+  </body>
+</html>

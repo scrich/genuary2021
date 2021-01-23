@@ -10,12 +10,14 @@ function setup() {
   t = 0;
   scale = 20;
   // colors = ["#A6373F", "#AA8E39", "#343477", "#3C8D2F", "#59c8c0", "#5571c6", "#cbcb88", "#c372d0"]
-  colors = ["#6d08a1", "#f15400", "#009f6f", "#edf100"]
+  // colors = ["#6d08a1", "#f15400", "#009f6f", "#edf100"]
+  colors = ["#264653","#2a9d8f","#e9c46a","#f4a261","#e76f51"];
+
 
 }
 
 function draw() {
-  background(220);
+  background(0);
   stroke(0);
   noFill();
   strokeWeight(1);

@@ -26,7 +26,7 @@ function setup() {
   for (let x = 10; x < width; x+=scale) {
     console.log(x);
     for (let y = 10; y < height; y+=scale) {
-      s.push(new Sas(x, y, scale*0.8, colors[floor(random(colors.length))]));
+      s.push(new Sas(x, y, scale*0.8, colors[floor(random(colors.length))],colors[floor(random(colors.length))]));
     }
   }
   // frameRate(2);
@@ -38,7 +38,7 @@ function setup() {
 }
 
 function draw() {
-  background(255);  
+  background(0);  
   // s=[];
   // s.push(new Sas(50,50,100,"#A6373F"));
   // s.push(new Sas(250,50,100, "#AA8E39"));
