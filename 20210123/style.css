@@ -1,0 +1,13 @@
+html, body {
+  margin: 10;
+  padding: 10;
+}
+
+canvas {
+  display: block;
+}
+
+canvas.reduced {
+  width: 480px !important;
+  height: 480px !important;
+}

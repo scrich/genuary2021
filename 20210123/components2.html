@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="class_Roof_e.js"></script>
+    <script src="cTodesfabrik.js"></script>
+    <script src="blendmode.js"></script>
+    
+    
+    
+  </head>
+
+  <body>
+    <script src="components2.js"></script>
+    <h1>Components 2</h1>
+    <p><a href = "index.html">Index</a></p>
+    <div id = 'sketch'></div>
+    <h2>Blend modes</h2>
+<pre>b BLEND - linear interpolation of colours: C = A\*factor + B. This is the default blending mode.
+a ADD - sum of A and B
+d DARKEST - only the darkest colour succeeds: C = min(A\*factor, B).
+l LIGHTEST - only the lightest colour succeeds: C = max(A\*factor, B).
+f DIFFERENCE - subtract colors from underlying image.
+e EXCLUSION - similar to DIFFERENCE, but less extreme.
+m MULTIPLY - multiply the colors, result will always be darker.
+s SCREEN - opposite multiply, uses inverse values of the colors.
+r REPLACE - the pixels entirely replace the others and don't utilize alpha (transparency) values.
+[not used] REMOVE - removes pixels from B with the alpha strength of A.
+o OVERLAY - mix of MULTIPLY and SCREEN . Multiplies dark values, and screens light values. (2D)
+z HARD_LIGHT - SCREEN when greater than 50% gray, MULTIPLY when lower. (2D)
+x SOFT_LIGHT - mix of DARKEST and LIGHTEST. Works like OVERLAY, but not as harsh. (2D)
+g DODGE - lightens light tones and increases contrast, ignores darks. (2D)
+u BURN - darker areas are applied, increasing contrast, ignores lights. (2D)
+</pre>
+  </body>
+</html>
