@@ -22,7 +22,7 @@ function setup() {
     let cnv = createCanvas(4800, 4800);
     cnv.class("reduced");
     
-    let colors = [color("#8a3324"), color("#826644"), color("#c69d06"), color("#fff600"), color("#f0dc82"), color("#424746")]
+    // let colors = [color("#8a3324"), color("#826644"), color("#c69d06"), color("#fff600"), color("#f0dc82"), color("#424746")]
 
     fill(colors[floor(random(5))])
     background(colors[floor(random(5))]);

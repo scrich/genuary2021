@@ -2,7 +2,7 @@
 let shape = [];
 let front = [];
 let back = [];
-let colors = [];
+// let colors = [];
 let bg; // background colour
 let fl; // fill colour
 
@@ -27,13 +27,13 @@ function setup() {
     cnv.parent('sketch');
     blendMode(BLEND);
     
-    let colors = [
-        color(0x8a, 0x33, 0x24), 
-        color(0x82, 0x66, 0x44), 
-        color(0xc6, 0x9d, 0x06), 
-        color(0xff, 0xf6, 0x00), 
-        color(0xf0, 0xdc, 0x82), 
-        color(0x42, 0x47, 0x46)]
+    // let colors = [
+    //     color(0x8a, 0x33, 0x24), 
+    //     color(0x82, 0x66, 0x44), 
+    //     color(0xc6, 0x9d, 0x06), 
+    //     color(0xff, 0xf6, 0x00), 
+    //     color(0xf0, 0xdc, 0x82), 
+    //     color(0x42, 0x47, 0x46)]
     console.log(colors);
     fl = colors[floor(random(colors.length))];
     bg = colors[floor(random(colors.length))];
