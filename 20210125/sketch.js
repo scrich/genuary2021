@@ -26,6 +26,7 @@ function setup() {
   fill(colors[floor(random(colors.length))])
   background(colors[floor(random(colors.length))]);
 
+
   let rows = width / scl;
   let cols = height / scl;
 

@@ -36,6 +36,7 @@ function setup() {
     labelr.parent("r");
     // frameRate(20);
 
+    
 
     for (let q = 0; q < qols; q += 2) {
         for (let r = 0; r < rows; r += 2) {
