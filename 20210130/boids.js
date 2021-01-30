@@ -8,7 +8,7 @@ class Boid {
         this.vel.setMag(random(2,4));
         this.acc = createVector();
         this.maxForce = 1;
-        this.maxSpeed = 4;
+        this.maxSpeed = 5;
     } 
 
     flock(boids) {

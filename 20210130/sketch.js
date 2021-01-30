@@ -5,12 +5,12 @@ let wave;
 
 
 function setup() {
-  let can = createCanvas(600, 400);
+  let can = createCanvas(400, 400);
   can.parent("canvas");
 
   rectMode(CENTER);
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 30; i++) {
     flock.push(new Gen_boid());
   }
   sliderAlign = createSlider(0,5,1,0.1);
@@ -37,7 +37,7 @@ function setup() {
 }
 
 function draw() {
-  background(51);
+  background(0);
 
   labelAlign.html(sliderAlign.value());
   labelCohesion.html(sliderCohesion.value());
